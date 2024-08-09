@@ -1,0 +1,260 @@
+body {
+  --text-color: #e1cdb5;
+  --border-color: #6c63ff;
+  --modal-color: #e1cdb5;
+  --icon-img: url("./img/icon.svg");
+  --background-color: #90708c;
+  --transition: all 0.3s ease 0s;
+  --opacity: 1;
+  --modal-bg-color: #49306b;
+  --shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  background-color: var(--modal-color);
+  min-height: 100dvh;
+  max-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+body.dark {
+  --text-color: #000000;
+  --modal-color: #252525;
+  --icon-img: url("./img/icon-dark.svg");
+  --background-color: black;
+  --opacity: 0.7;
+  --modal-bg-color: #443957;
+}
+
+.container {
+  padding: 40px;
+  background-color: var(--background-color);
+  border-radius: 25px;
+  margin: 0 auto;
+}
+
+.cards {
+  row-gap: 18px;
+  width: 450px;
+  height: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  width: calc(100% / 4 - 14px);
+  height: calc(100% / 4 - 14px);
+  /* background-color: var(--modal-color); */
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.view {
+  width: 100%;
+  height: 100%;
+  box-shadow: var(--shadow);
+  position: absolute;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  transition: transform 0.3s linear 0s;
+  background-color: var(--modal-bg-color);
+}
+
+.back {
+  transform: rotateY(-180deg);
+}
+
+.flip .front {
+  transform: rotateY(180deg);
+}
+
+.flip .back {
+  transform: rotateY(0deg);
+}
+
+.shake {
+  animation: shake 0.35s ease-in-out;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-13px);
+  }
+  40% {
+    transform: translateX(13px);
+  }
+  60% {
+    transform: translateX(-8px);
+  }
+  80% {
+    transform: translatex(8px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+span {
+  color: #ace4aa;
+}
+
+img {
+  max-width: 45px;
+}
+
+.card:hover {
+  opacity: 0.7;
+}
+
+.header__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #635380;
+  min-width: 38px;
+  min-height: 38px;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  background-image: var(--icon-img);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #252525b2;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal-open {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease 1s;
+}
+
+.modal__container {
+  width: 500px;
+  height: 200px;
+  background: var(--modal-bg-color);
+  margin-top: 118px;
+  padding: 18px 30px;
+  border-radius: 16px;
+  border: 1px solid var(--text-color);
+}
+
+.modal__title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--text-color);
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 40px;
+}
+
+.modal__body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal__btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__btn {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 5px;
+}
+
+.cancel {
+  background: transparent;
+  color: #e1cdb5;
+  border: 1px solid #e1cdb5;
+}
+
+.apply {
+  color: #49306b;
+  background: #ace4aa;
+  opacity: var(--opacity);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 1040px) {
+}
+
+@media (max-width: 800px) {
+  .cards {
+    row-gap: 18px;
+    width: 350px;
+    height: 350px;
+  }
+
+  .container {
+    padding: 20px 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  .cards {
+    row-gap: 10px;
+    width: 250px;
+    height: 250px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .header__btn {
+    right: 25px;
+    bottom: 25px;
+  }
+
+  .modal__container {
+    width: 300px;
+    height: 200px;
+  }
+
+  img {
+    max-width: 30px;
+  }
+
+  .card {
+    width: calc(100% / 4 - 10px);
+    height: calc(100% / 4 - 10px);
+  }
+}
